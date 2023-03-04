@@ -18,7 +18,7 @@ function KareninAlani(kenaruzunlugu){
 }
 
 /* (Oto test yok) Yukarıdaki KareninAlani fonksiyonunu kenar uzunluğu = 10 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
-
+console.log(KareninAlani(10));
 
 
 /* 	GÖREV 1:  
@@ -29,14 +29,14 @@ function KareninAlani(kenaruzunlugu){
 			4. Hesaplanan çemberin çevresi döndürülecektir.
 		*/
 
-function CemberinCevresi(/* kodlar buraya */){
-	/* kodlar buraya */
+function CemberinCevresi(radiusofCircle){
+	return pi * radiusofCircle * 2;
 }
 
 
 /* (Oto test yok) Yukarıdaki CemberinCevresi fonksiyonunu yarıçap = 5 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
-
+console.log(CemberinCevresi(5));
 
 
 /* 	GÖREV 2:  
@@ -47,14 +47,14 @@ function CemberinCevresi(/* kodlar buraya */){
 			4. Hesaplanan çemberin alanı döndürülecektir.
 		*/
 		
-function CemberinAlani(/* kodlar buraya */){
-	/* kodlar buraya */
+function CemberinAlani(radiusofCircle) {
+	return pi * radiusofCircle * radiusofCircle;
 }
 
 
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
-
+console.log(CemberinAlani(5));
 
 /* 	GÖREV 3:
 		- Sayfanın en üstünde global değişken olarak tanımlanmış bir sayilar dizisi bulunmaktadır. Bu dizi içinde 0 ile 1000 arasında rasgele oluşturulmuş tam sayılar ve ondalıklı sayılar bulunmaktadır. Bu diziyi kullanarak aşağıdakileri uygulayın:
@@ -77,38 +77,65 @@ function CemberinAlani(/* kodlar buraya */){
 	
 	//3a çözümü
 
-	/* kodlar buraya */
-	
-	
-	
-	// 3b çözümü:
+	//3a. enbuyuk ve enkucuk isminde 2 adet değişken tanımlayın ve sayilar dizisindeki en küçük sayı ile en büyük sayıyı bu değişkenlere atayın. (for döngüsü kullanın)
+	enkucuk = sayilar[0]
+	enbuyuk = sayilar[0]
+	for(let i = 0; i < sayilar.length; i++) {
+	 if(sayilar[i] < enkucuk){
+	 enkucuk = sayilar[i]}
+	}
+	for(let i = 0; i < sayilar.length; i++) {
+		if(sayilar[i] > enbuyuk) {
+			enbuyuk = sayilar[i]
+		}
+	}
 
-	/* kodlar buraya */
+	console.log( "en küçük değer =", enkucuk, "en büyük değer =", enbuyuk);
+//enbuyuk = Math.max(...sayilar);
+//enkucuk = Math.min(...sayilar);
+//console.log("en büyük: " + enbuyuk, "en küçük: " + enkucuk);
+
+	// 3b çözümü:
+//3b. `ucetambolunenler` adında bir dizi tanımlayın ve bu diziye sayilar dizisindeki 3'ün tam katı olan sayıları atayın (.forEach metodunu kullanın)
+ucetambolunenler = []
+	sayilar.forEach(i => i % 3 === 0 ? ucetambolunenler.push(i) : 0);
 		
-		
+	console.log(ucetambolunenler);
 		
 	//3c çözümü:
 	
-	/* kodlar buraya */
+	//3c. `ucetambolunenler` dizisindeki sayıların toplamını .reduce metoduyla bulup, sonucu `ucebolunenlerintoplami` değişkenine yazdırın (.reduce metodunu kullanın)
 
-	
-	
+	ucebolunenlerintoplami = ucetambolunenler.reduce((x, y) => (x + y), 0);
+
+	console.log(ucebolunenlerintoplami);
 	//3d çözümü
 	
-	/* kodlar buraya */
+	//3d. `besyuzdenkucuksayilar` adında bir dizi oluşturarak, sayilar dizisinin içindeki 500'den küçük sayıları bu diziye atayın (.filter metodunu kullanın)
+besyuzdenkucuksayilar = sayilar.filter(i => i < 500);
 
-
-
+console.log(besyuzdenkucuksayilar);
 	//3e çözümü
 
-	/* kodlar buraya */
-	
-	
+	//3e. besyuzdenkucuksayilar dizisindeki sayıları küçükten büyüğe sıralayıp `siralisayilar` adındaki bir diziye aktarın (.sort metodunu kullanın)
+	siralisayilar = besyuzdenkucuksayilar.sort((x, y) => x - y);
+	console.log(siralisayilar);
 	//3f çözümü
 	
-	/* kodlar buraya */
+	/* 3f. `tekraredensayilar` adında bir dizi oluşturun. sayilar dizisi içerisindeki bazı sayılar birden fazla kere yazılmış. sayilar dizisi içerisinde birden fazla kez yazılmış sayıları tespit ederek kaç kere tekrar edildiğini belirten bir string oluşturulup `tekraredensayilar` dizisine aktarılmasını istiyoruz. Örnek string: "{sayı} sayısı {tekrarSayisi} kere tekrar edilmiştir" */
 
-
+	let tekraredensayilarDizisi = [];
+	tekraredensayilar = [];
+	let counts = {};
+	tekraredensayilarDizisi = sayilar.forEach((x) => counts[x] = (counts[x] || 0) + 1);
+	const countsDiziler = Object.entries(counts);
+	
+	let filtrelenmisDizi = countsDiziler.filter(sayi => sayi[1] > 1);
+	for (let i = 0; i < filtrelenmisDizi.length; i++) {
+		tekraredensayilar.push(`${filtrelenmisDizi[i][0]} sayısı ${filtrelenmisDizi[i][1]} kere tekrar edilmiştir`)
+	}
+	
+	console.log("görev 3f", tekraredensayilar);
 
 
 	
